@@ -1,0 +1,43 @@
+---
+title: "2018 Pinewood Derby Results"
+author: "DJR"
+date: "February 3, 2019"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r loadlib,message=FALSE}
+library(plotly)
+library(dplyr)
+```
+
+```{r readfile, cache=FALSE}
+filePath <- "C:/DevelopingDataProducts/DDPWeek3AssignmentDJR/PWD2019Results.csv"
+#classes <- c(rep("character", 2), rep("numerical",7))
+pwdFile<-read.csv(filePath, header=TRUE, sep=",", dec=".")
+pwdFile<-mutate(pwdFile, CarNumber=as.factor(CarNumber))
+
+```
+
+## Scale Speed by Car Class
+```{r, echo=FALSE, message=FALSE}
+Scale_Speed_MPH_scaled<-pwdFile$ScaleSpeed[4:65]
+Car_Class<-pwdFile$Class[4:65]
+plot_ly(pwdFile, y = ~Scale_Speed_MPH_scaled, color = ~Car_Class, type = "box")
+```
+
+## 2018 Stock Champion Benchmark 
+- Histogram Represents combined results for Cub Scout and Outlaw classes.
+- X axis is percentage of the 2018 National Stock Champion Speed (`r paste(format(pwdFile$ScaleSpeed[3],digits=2, nsmall=2)," scaled MPH",sep="")`.)
+```{r histogram, message=FALSE}
+Percentage_Stock_Champion_Speed <- pwdFile$PcntOfStockChampSpeed[4:65]
+plot_ly(pwdFile,x = ~Percentage_Stock_Champion_Speed, height=350, width=700, type = "histogram")
+```
+
+
+
+
+
