@@ -1,5 +1,5 @@
 ---
-title: "2018 Pinewood Derby Results"
+title: "2018 Pinewood Derby Results (scroll down for plot slides)"
 author: "DJR"
 date: "February 3, 2019"
 output: ioslides_presentation
